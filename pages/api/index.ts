@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         case 'GET':
             try {
                 const recipes = await Recipe.find({});
-                res.status(200).json({ status: 'success', data: recipes });
+                res.status(200).json({ status: 'success', data: recipes, uri: process.env.MONGODB_URI });
             } catch (e) {
                 console.error(e);
                 res.status(404).json({ status: 'error', message: 'Recipe search could not be performed.' });
